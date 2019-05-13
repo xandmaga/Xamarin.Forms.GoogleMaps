@@ -16,13 +16,67 @@ namespace XFGoogleMapSample
             Polygon polygon = null;
             Circle circle = null;
 
+            string mapStyle = @"[
+                                {
+                                'featureType': 'administrative',
+                                'elementType': 'geometry',
+                                'stylers': [
+                                    {
+                                    'visibility': 'off'
+                                    }
+                                ]
+                                },
+                                {
+                                'featureType': 'poi',
+                                'stylers': [
+                                    {
+                                    'visibility': 'off'
+                                    }
+                                ]
+                                },
+                                {
+                                'featureType': 'road',
+                                'elementType': 'labels.icon',
+                                'stylers': [
+                                    {
+                                    'visibility': 'off'
+                                    }
+                                ]
+                                },
+                                {
+                                'featureType': 'transit',
+                                'stylers': [
+                                    {
+                                    'visibility': 'off'
+                                    }
+                                ]
+                                }
+                            ]";
+
             // Polyline
             buttonAddPolyline.Clicked += (sender, e) =>
             {
                 polyline = new Polyline();
-                polyline.Positions.Add(new Position(40.77d, -73.93d));
+                /*polyline.Positions.Add(new Position(40.77d, -73.93d));
                 polyline.Positions.Add(new Position(40.81d, -73.91d));
-                polyline.Positions.Add(new Position(40.83d, -73.87d));
+                polyline.Positions.Add(new Position(40.83d, -73.87d));*/
+
+                polyline.Positions.Add(new Position(37.797534, -122.401827));
+                polyline.Positions.Add(new Position(37.797510, -122.402060));
+                polyline.Positions.Add(new Position(37.790269, -122.400589));
+                polyline.Positions.Add(new Position(37.790265, -122.400474));
+                polyline.Positions.Add(new Position(37.790228, -122.400391));
+                polyline.Positions.Add(new Position(37.790126, -122.400360));
+                polyline.Positions.Add(new Position(37.789250, -122.401451));
+                polyline.Positions.Add(new Position(37.788440, -122.400396));
+                polyline.Positions.Add(new Position(37.787999, -122.399780));
+                polyline.Positions.Add(new Position(37.786736, -122.398202));
+                polyline.Positions.Add(new Position(37.786345, -122.397722));
+                polyline.Positions.Add(new Position(37.785983, -122.397295));
+                polyline.Positions.Add(new Position(37.785559, -122.396728));
+                polyline.Positions.Add(new Position(37.780624, -122.390541));
+                polyline.Positions.Add(new Position(37.777113, -122.394983));
+                polyline.Positions.Add(new Position(37.776831, -122.394627));
 
                 polyline.IsClickable = true;
                 polyline.StrokeColor = Color.Blue;
@@ -149,7 +203,9 @@ namespace XFGoogleMapSample
             };
             buttonRemoveCircle.IsEnabled = false;
 
-            map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(new Position(41d, -74d), 8d);
+            map.MapStyle = MapStyle.FromJson(mapStyle);
+
+            map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(new Position(37.79752, -122.40183), 12d);
         }
 
         void Polyline_Clicked(object sender, EventArgs e)
